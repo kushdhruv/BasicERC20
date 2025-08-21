@@ -1,66 +1,113 @@
-## Foundry
+# ERC-20 Token Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project is a template for developing, testing, and deploying Ethereum smart contracts using [Foundry](https://book.getfoundry.sh/), with a focus on ERC-20 token contracts. It leverages OpenZeppelin Contracts for secure and community-vetted implementations.
 
-Foundry consists of:
+## Project Structure
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+```
+.
+├── src/                    # Solidity source contracts
+│   ├── ManualToken.sol
+│   └── OurToken.sol
+├── script/                 # Deployment scripts
+│   └── DeployOurToken.s.sol
+├── test/                   # Solidity tests
+│   └── OurTokenTest.t.sol
+├── lib/                    # External libraries (OpenZeppelin, forge-std, etc.)
+├── broadcast/              # Deployment broadcast logs
+├── cache/                  # Build cache
+├── .github/workflows/      # GitHub Actions CI configuration
+├── Makefile                # Common development commands
+├── foundry.toml            # Foundry configuration
+├── README.md               # Project documentation
+└── ...
+```
 
-## Documentation
+## Features
 
-https://book.getfoundry.sh/
+- **ERC-20 Token Implementation:** Custom tokens in `src/OurToken.sol` and `src/ManualToken.sol`.
+- **Testing:** Comprehensive tests in `test/OurTokenTest.t.sol` using Forge and forge-std.
+- **Deployment Scripts:** Automated deployment via `script/DeployOurToken.s.sol`.
+- **OpenZeppelin Contracts:** Secure, audited contract components via `lib/openzeppelin-contracts`.
+- **CI/CD:** Automated formatting, building, and testing with GitHub Actions.
+- **Makefile:** Common tasks for building, testing, deploying, and running local nodes.
 
-## Usage
+## Getting Started
+
+### Prerequisites
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation.html)
+- Node.js (for OpenZeppelin scripts, if needed)
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```sh
+git clone <repo-url>
+cd ERC-20_Token
+forge install
+```
 
 ### Build
 
-```shell
-$ forge build
+```sh
+forge build
 ```
 
 ### Test
 
-```shell
-$ forge test
+```sh
+forge test
 ```
 
 ### Format
 
-```shell
-$ forge fmt
+```sh
+forge fmt
 ```
 
 ### Gas Snapshots
 
-```shell
-$ forge snapshot
+```sh
+forge snapshot
 ```
 
-### Anvil
+### Local Node
 
-```shell
-$ anvil
+Start a local Ethereum node with Anvil:
+
+```sh
+anvil
 ```
 
 ### Deploy
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+Update your `.env` with the appropriate RPC URL and private key, then:
+
+```sh
+make deploy
+```
+Or manually:
+```sh
+forge script script/DeployOurToken.s.sol:OurToken --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
-### Cast
+## Directory Overview
 
-```shell
-$ cast <subcommand>
-```
+- `src/` — Solidity contracts.
+- `test/` — Solidity tests.
+- `script/` — Deployment scripts.
+- `lib/` — External libraries (OpenZeppelin, forge-std).
+- `Makefile` — Common development commands.
+- `foundry.toml` — Foundry configuration.
 
-### Help
+## References
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- [Foundry Book](https://book.getfoundry.sh/)
+- [OpenZeppelin Contracts Docs](https://docs.openzeppelin.com/contracts)
+- [forge-std Library](https://github.com/foundry-rs/forge-std)
+
+## License
+
+This project is licensed under the MIT License. See `lib/openzeppelin-contracts/LICENSE-MIT` for details.
